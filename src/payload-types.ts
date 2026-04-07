@@ -69,6 +69,12 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    brands: Brand;
+    'creative-units': CreativeUnit;
+    'creative-assets': CreativeAsset;
+    'creative-analysis': CreativeAnalysis;
+    collections: Collection;
+    'collection-items': CollectionItem;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,13 +84,19 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    brands: BrandsSelect<false> | BrandsSelect<true>;
+    'creative-units': CreativeUnitsSelect<false> | CreativeUnitsSelect<true>;
+    'creative-assets': CreativeAssetsSelect<false> | CreativeAssetsSelect<true>;
+    'creative-analysis': CreativeAnalysisSelect<false> | CreativeAnalysisSelect<true>;
+    collections: CollectionsSelect<false> | CollectionsSelect<true>;
+    'collection-items': CollectionItemsSelect<false> | CollectionItemsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   fallbackLocale: null;
   globals: {};
@@ -122,7 +134,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -147,7 +159,7 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -163,10 +175,244 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands".
+ */
+export interface Brand {
+  id: number;
+  brandName: string;
+  companyName?: string | null;
+  countryOrigin?: string | null;
+  category?:
+    | (
+        | 'ai_assistant'
+        | 'search'
+        | 'writing'
+        | 'image_generation'
+        | 'video_generation'
+        | 'coding'
+        | 'presentation'
+        | 'education'
+        | 'productivity'
+        | 'agent'
+      )
+    | null;
+  logo?: (number | null) | Media;
+  websiteUrl?: string | null;
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "creative-units".
+ */
+export interface CreativeUnit {
+  id: number;
+  slug: string;
+  title?: string | null;
+  brand: number | Brand;
+  productName?: string | null;
+  ecosystem: 'china' | 'global';
+  platform:
+    | 'douyin'
+    | 'xiaohongshu'
+    | 'bilibili'
+    | 'weibo'
+    | 'wechat'
+    | 'baidu'
+    | 'facebook'
+    | 'instagram'
+    | 'tiktok'
+    | 'youtube'
+    | 'google_search'
+    | 'reddit'
+    | 'x'
+    | 'app_store'
+    | 'landing_page'
+    | 'other';
+  unitType:
+    | 'paid_ad'
+    | 'organic_post'
+    | 'brand_account_video'
+    | 'creator_collab'
+    | 'ugc_style_content'
+    | 'search_ad'
+    | 'landing_page'
+    | 'app_store_asset'
+    | 'email'
+    | 'website_hero';
+  contentFormat:
+    | 'image'
+    | 'carousel'
+    | 'short_video'
+    | 'long_video'
+    | 'text_post'
+    | 'search_text'
+    | 'landing_page'
+    | 'screenshot_set';
+  region?: string | null;
+  language?: string | null;
+  headline?: string | null;
+  bodyCopy?: string | null;
+  cta?: string | null;
+  hookType?:
+    | (
+        | 'pain_point'
+        | 'efficiency'
+        | 'curiosity'
+        | 'before_after'
+        | 'product_demo'
+        | 'social_proof'
+        | 'aspiration'
+        | 'comparison'
+        | 'tutorial'
+        | 'fomo'
+      )
+    | null;
+  campaignAngle?: string | null;
+  funnelStage?: ('awareness' | 'consideration' | 'acquisition' | 'activation' | 'retention' | 're_engagement') | null;
+  targetAudience?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  useCase?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  userPromise?: string | null;
+  nativeStyle?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  disguiseLevel?: ('low' | 'medium' | 'high') | null;
+  claimIntensity?: ('low' | 'medium' | 'high') | null;
+  visualStyle?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  tags?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  sourceUrl?: string | null;
+  landingUrl?: string | null;
+  source?:
+    | (
+        | 'meta_ad_library'
+        | 'tiktok_creative_center'
+        | 'manual_capture'
+        | 'app_store'
+        | 'official_website'
+        | 'creator_post'
+        | 'archive'
+        | 'community'
+      )
+    | null;
+  status: 'pending' | 'approved' | 'archived';
+  submittedBy?: string | null;
+  reviewerNote?: string | null;
+  dateSeen?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "creative-assets".
+ */
+export interface CreativeAsset {
+  id: number;
+  creativeUnit: number | CreativeUnit;
+  assetType: 'image' | 'video' | 'screenshot';
+  file: number | Media;
+  thumbnailFile?: (number | null) | Media;
+  aspectRatio?: ('1:1' | '9:16' | '16:9' | '4:5' | '1.91:1') | null;
+  durationSeconds?: number | null;
+  coverFrameText?: string | null;
+  onScreenText?:
+    | {
+        line?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  voiceoverSummary?: string | null;
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "creative-analysis".
+ */
+export interface CreativeAnalysis {
+  id: number;
+  creativeUnit: number | CreativeUnit;
+  whyItWorks?:
+    | {
+        point?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  potentialWeaknesses?:
+    | {
+        point?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  reusableInsights?:
+    | {
+        insight?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  competitiveNotes?: string | null;
+  complianceNotes?: string | null;
+  confidenceScore?: number | null;
+  analystNote?: string | null;
+  aiGenerated?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections".
+ */
+export interface Collection {
+  id: number;
+  name: string;
+  slug: string;
+  description?: string | null;
+  coverImage?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collection-items".
+ */
+export interface CollectionItem {
+  id: number;
+  collection: number | Collection;
+  creativeUnit: number | CreativeUnit;
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -183,20 +429,44 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'brands';
+        value: number | Brand;
+      } | null)
+    | ({
+        relationTo: 'creative-units';
+        value: number | CreativeUnit;
+      } | null)
+    | ({
+        relationTo: 'creative-assets';
+        value: number | CreativeAsset;
+      } | null)
+    | ({
+        relationTo: 'creative-analysis';
+        value: number | CreativeAnalysis;
+      } | null)
+    | ({
+        relationTo: 'collections';
+        value: number | Collection;
+      } | null)
+    | ({
+        relationTo: 'collection-items';
+        value: number | CollectionItem;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -206,10 +476,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -229,7 +499,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -274,6 +544,163 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands_select".
+ */
+export interface BrandsSelect<T extends boolean = true> {
+  brandName?: T;
+  companyName?: T;
+  countryOrigin?: T;
+  category?: T;
+  logo?: T;
+  websiteUrl?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "creative-units_select".
+ */
+export interface CreativeUnitsSelect<T extends boolean = true> {
+  slug?: T;
+  title?: T;
+  brand?: T;
+  productName?: T;
+  ecosystem?: T;
+  platform?: T;
+  unitType?: T;
+  contentFormat?: T;
+  region?: T;
+  language?: T;
+  headline?: T;
+  bodyCopy?: T;
+  cta?: T;
+  hookType?: T;
+  campaignAngle?: T;
+  funnelStage?: T;
+  targetAudience?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  useCase?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  userPromise?: T;
+  nativeStyle?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  disguiseLevel?: T;
+  claimIntensity?: T;
+  visualStyle?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  tags?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  sourceUrl?: T;
+  landingUrl?: T;
+  source?: T;
+  status?: T;
+  submittedBy?: T;
+  reviewerNote?: T;
+  dateSeen?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "creative-assets_select".
+ */
+export interface CreativeAssetsSelect<T extends boolean = true> {
+  creativeUnit?: T;
+  assetType?: T;
+  file?: T;
+  thumbnailFile?: T;
+  aspectRatio?: T;
+  durationSeconds?: T;
+  coverFrameText?: T;
+  onScreenText?:
+    | T
+    | {
+        line?: T;
+        id?: T;
+      };
+  voiceoverSummary?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "creative-analysis_select".
+ */
+export interface CreativeAnalysisSelect<T extends boolean = true> {
+  creativeUnit?: T;
+  whyItWorks?:
+    | T
+    | {
+        point?: T;
+        id?: T;
+      };
+  potentialWeaknesses?:
+    | T
+    | {
+        point?: T;
+        id?: T;
+      };
+  reusableInsights?:
+    | T
+    | {
+        insight?: T;
+        id?: T;
+      };
+  competitiveNotes?: T;
+  complianceNotes?: T;
+  confidenceScore?: T;
+  analystNote?: T;
+  aiGenerated?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_select".
+ */
+export interface CollectionsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  coverImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collection-items_select".
+ */
+export interface CollectionItemsSelect<T extends boolean = true> {
+  collection?: T;
+  creativeUnit?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
