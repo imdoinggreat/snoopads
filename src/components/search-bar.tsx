@@ -35,7 +35,7 @@ export function SearchBar() {
         placeholder="Search creatives..."
         defaultValue={searchParams.get('q') ?? ''}
         onChange={handleChange}
-        className={`bg-card/50 border-border text-foreground placeholder:text-muted-foreground ${isPending ? 'opacity-70' : ''}`}
+        className={isPending ? 'opacity-70' : ''}
       />
     </div>
   )
