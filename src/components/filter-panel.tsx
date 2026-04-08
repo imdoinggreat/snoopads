@@ -77,7 +77,7 @@ export function FilterPanel() {
         <select
           value={searchParams.get('ecosystem') ?? ''}
           onChange={(e) => handleChange('ecosystem', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="flex h-8 w-full rounded-lg border border-border bg-card text-foreground px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           {ecosystems.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -92,7 +92,7 @@ export function FilterPanel() {
         <select
           value={searchParams.get('platform') ?? ''}
           onChange={(e) => handleChange('platform', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="flex h-8 w-full rounded-lg border border-border bg-card text-foreground px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           {platforms.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -107,7 +107,7 @@ export function FilterPanel() {
         <select
           value={searchParams.get('hookType') ?? ''}
           onChange={(e) => handleChange('hookType', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="flex h-8 w-full rounded-lg border border-border bg-card text-foreground px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           {hookTypes.map((opt) => (
             <option key={opt.value} value={opt.value}>

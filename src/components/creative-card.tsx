@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
 interface CreativeCardProps {
@@ -60,8 +59,8 @@ export function CreativeCard({
 }: CreativeCardProps) {
   return (
     <Link href={`/creative/${slug}`} className="group block">
-      <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-        <div className="relative aspect-video bg-muted">
+      <div className="overflow-hidden rounded-xl border border-border bg-card card-hover">
+        <div className="relative aspect-video bg-secondary">
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
@@ -71,44 +70,41 @@ export function CreativeCard({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-muted-foreground">
+            <div className="flex h-full items-center justify-center text-muted-foreground text-sm">
               No preview
             </div>
           )}
-          <Badge
-            variant="secondary"
-            className="absolute top-2 right-2 text-[10px] uppercase"
-          >
+          <span className="absolute top-2 right-2 text-[10px] uppercase bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full border border-border">
             {ecosystem === 'china' ? 'CN' : 'Global'}
-          </Badge>
+          </span>
         </div>
-        <CardContent className="space-y-2">
+        <div className="p-3 space-y-2">
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>{brandName}</span>
             <span>{platformLabels[platform] ?? platform}</span>
           </div>
-          <h3 className="line-clamp-2 text-sm font-medium leading-snug group-hover:underline">
+          <h3 className="line-clamp-2 text-sm font-medium leading-snug text-foreground group-hover:text-primary transition-colors">
             {title}
           </h3>
           <div className="flex flex-wrap gap-1">
             {hookType && (
-              <Badge variant="outline" className="text-[10px]">
+              <span className="text-[10px] px-2 py-0.5 rounded-full border border-border text-muted-foreground">
                 {hookLabels[hookType] ?? hookType}
-              </Badge>
+              </span>
             )}
             {disguiseLevel && (
-              <Badge variant="secondary" className="text-[10px]">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
                 Disguise: {disguiseLevel}
-              </Badge>
+              </span>
             )}
             {useCases.slice(0, 2).map((uc) => (
-              <Badge key={uc} variant="secondary" className="text-[10px]">
+              <span key={uc} className="text-[10px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
                 {uc}
-              </Badge>
+              </span>
             ))}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </Link>
   )
 }
