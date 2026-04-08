@@ -1,5 +1,5 @@
 export function Footer() {
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'contact@example.com'
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'ziruziru@foxmail.com'
 
   return (
     <footer className="border-t border-border">

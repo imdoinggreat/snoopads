@@ -7,6 +7,8 @@ import configPromise from '@payload-config'
 import { SearchBar } from '@/components/search-bar'
 import { CreativeCard } from '@/components/creative-card'
 import { extractArrayValues } from '@/lib/queries'
+import { FallingPattern } from '@/components/ui/falling-pattern'
+import { HoverButton } from '@/components/ui/hover-button'
 
 const TAXONOMY = [
   {
@@ -84,8 +86,15 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* ─── HERO ─── */}
-      <section className="grid-bg border-b border-border">
-        <div className="container max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <section className="relative grid-bg border-b border-border">
+        <FallingPattern
+            className="absolute inset-0 h-full [mask-image:radial-gradient(ellipse_at_center,transparent_20%,var(--background))]"
+            color="var(--primary)"
+            backgroundColor="var(--background)"
+            duration={200}
+            blurIntensity="0.8em"
+        />
+        <div className="relative container max-w-7xl mx-auto px-6 py-24 md:py-32">
           <div className="max-w-3xl">
             <p className="taxonomy-label mb-4 text-primary">Creative Intelligence Database</p>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[0.95]" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
@@ -198,8 +207,8 @@ export default async function HomePage() {
           <p className="text-sm text-muted-foreground">
             Built for marketers and product teams researching AI growth strategies.
           </p>
-          <Link href="/about" className="text-xs text-primary hover:underline mt-2 inline-block uppercase tracking-widest">
-            Read our methodology →
+          <Link href="/explore">
+            <HoverButton>Start Exploring →</HoverButton>
           </Link>
         </div>
       </section>

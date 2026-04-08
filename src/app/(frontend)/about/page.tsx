@@ -93,10 +93,10 @@ export default function AboutPage() {
           their respective owners. If you believe any content should be removed, please contact
           us at{' '}
           <a
-            href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@example.com'}`}
+            href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'ziruziru@foxmail.com'}`}
             className="text-foreground underline hover:no-underline"
           >
-            {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@example.com'}
+            {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'ziruziru@foxmail.com'}
           </a>
           .
         </p>
