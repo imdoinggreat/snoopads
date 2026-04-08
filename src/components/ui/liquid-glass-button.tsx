@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
@@ -49,13 +48,11 @@ export function LiquidButton({
   className,
   variant,
   size,
-  asChild = false,
   children,
   ...props
-}: React.ComponentProps<"button"> & VariantProps<typeof liquidbuttonVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "button"
+}: React.ComponentProps<"button"> & VariantProps<typeof liquidbuttonVariants>) {
   return (
-    <Comp
+    <button
       data-slot="button"
       className={cn("relative", liquidbuttonVariants({ variant, size, className }))}
       {...props}
@@ -64,7 +61,7 @@ export function LiquidButton({
       <div className="absolute top-0 left-0 isolate -z-10 h-full w-full overflow-hidden rounded-md" style={{ backdropFilter: 'url("#container-glass")' }} />
       <div className="pointer-events-none z-10">{children}</div>
       <GlassFilter />
-    </Comp>
+    </button>
   )
 }
 
