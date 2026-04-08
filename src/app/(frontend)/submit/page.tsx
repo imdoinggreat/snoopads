@@ -69,7 +69,7 @@ export default function SubmitPage() {
         </p>
         <button
           onClick={() => setStatus('idle')}
-          className="mt-8 rounded-md bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+          className="mt-8 rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           Submit another
         </button>
@@ -96,7 +96,7 @@ export default function SubmitPage() {
             type="url"
             required
             placeholder="https://..."
-            className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="mt-2 block w-full h-11 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
 
@@ -110,7 +110,7 @@ export default function SubmitPage() {
             name="brandName"
             type="text"
             placeholder="e.g. ChatGPT, Midjourney"
-            className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="mt-2 block w-full h-11 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
 
@@ -124,7 +124,7 @@ export default function SubmitPage() {
             name="title"
             type="text"
             placeholder="Brief description of the creative"
-            className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="mt-2 block w-full h-11 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
 
@@ -137,7 +137,7 @@ export default function SubmitPage() {
             id="platform"
             name="platform"
             required
-            className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="mt-2 block w-full h-11 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           >
             <option value="">Select platform...</option>
             {platformOptions.map((opt) => (
@@ -157,7 +157,7 @@ export default function SubmitPage() {
             id="ecosystem"
             name="ecosystem"
             required
-            className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="mt-2 block w-full h-11 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           >
             <option value="">Select ecosystem...</option>
             {ecosystemOptions.map((opt) => (
@@ -178,7 +178,7 @@ export default function SubmitPage() {
             name="landingUrl"
             type="url"
             placeholder="https://..."
-            className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="mt-2 block w-full h-11 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
 
@@ -193,7 +193,7 @@ export default function SubmitPage() {
             type="email"
             required
             placeholder="you@example.com"
-            className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="mt-2 block w-full h-11 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
 
@@ -208,7 +208,7 @@ export default function SubmitPage() {
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
+          className="w-full h-11 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors cursor-pointer"
         >
           {status === 'loading' ? 'Submitting...' : 'Submit Creative'}
         </button>

@@ -32,7 +32,7 @@ export function MediaDisplay({
         src={url}
         controls
         playsInline
-        className={cn('w-full rounded-lg bg-black', aspect, className)}
+        className={cn('w-full rounded-lg bg-card', aspect, className)}
       />
     )
   }

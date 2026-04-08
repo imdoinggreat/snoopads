@@ -77,7 +77,7 @@ export function FilterPanel() {
         <select
           value={searchParams.get('ecosystem') ?? ''}
           onChange={(e) => handleChange('ecosystem', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-border bg-card px-2.5 py-1 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
+          className="flex h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
         >
           {ecosystems.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -92,7 +92,7 @@ export function FilterPanel() {
         <select
           value={searchParams.get('platform') ?? ''}
           onChange={(e) => handleChange('platform', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-border bg-card px-2.5 py-1 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
+          className="flex h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
         >
           {platforms.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -107,7 +107,7 @@ export function FilterPanel() {
         <select
           value={searchParams.get('hookType') ?? ''}
           onChange={(e) => handleChange('hookType', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-border bg-card px-2.5 py-1 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
+          className="flex h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
         >
           {hookTypes.map((opt) => (
             <option key={opt.value} value={opt.value}>
