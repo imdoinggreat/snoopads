@@ -73,11 +73,11 @@ export function FilterPanel() {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <label className="text-sm font-medium">Ecosystem</label>
+        <label className="taxonomy-label text-foreground">Ecosystem</label>
         <select
           value={searchParams.get('ecosystem') ?? ''}
           onChange={(e) => handleChange('ecosystem', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="flex h-8 w-full rounded-lg border border-border bg-card px-2.5 py-1 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
         >
           {ecosystems.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -88,11 +88,11 @@ export function FilterPanel() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium">Platform</label>
+        <label className="taxonomy-label text-foreground">Platform</label>
         <select
           value={searchParams.get('platform') ?? ''}
           onChange={(e) => handleChange('platform', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="flex h-8 w-full rounded-lg border border-border bg-card px-2.5 py-1 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
         >
           {platforms.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -103,11 +103,11 @@ export function FilterPanel() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium">Hook Type</label>
+        <label className="taxonomy-label text-foreground">Hook Type</label>
         <select
           value={searchParams.get('hookType') ?? ''}
           onChange={(e) => handleChange('hookType', e.target.value)}
-          className="flex h-8 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="flex h-8 w-full rounded-lg border border-border bg-card px-2.5 py-1 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
         >
           {hookTypes.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -118,7 +118,7 @@ export function FilterPanel() {
       </div>
 
       {hasFilters && (
-        <Button variant="ghost" size="sm" onClick={clearAll} className="w-full">
+        <Button variant="ghost" size="sm" onClick={clearAll} className="w-full text-muted-foreground hover:text-foreground">
           Clear all
         </Button>
       )}

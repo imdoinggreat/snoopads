@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 
 interface CreativeCardProps {
   slug: string
@@ -60,8 +58,9 @@ export function CreativeCard({
 }: CreativeCardProps) {
   return (
     <Link href={`/creative/${slug}`} className="group block">
-      <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-        <div className="relative aspect-video bg-muted">
+      <div className="intel-card rounded-lg overflow-hidden">
+        {/* Thumbnail area */}
+        <div className="relative aspect-video bg-secondary">
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
@@ -71,44 +70,53 @@ export function CreativeCard({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-muted-foreground">
-              No preview
+            <div className="flex h-full items-center justify-center">
+              <span className="taxonomy-label">No preview</span>
             </div>
           )}
-          <Badge
-            variant="secondary"
-            className="absolute top-2 right-2 text-[10px] uppercase"
-          >
-            {ecosystem === 'china' ? 'CN' : 'Global'}
-          </Badge>
+          {/* Ecosystem badge */}
+          <span className="absolute top-2 right-2 taxonomy-label px-1.5 py-0.5 bg-background/80 rounded text-[10px]">
+            {ecosystem === 'china' ? 'CN' : 'GL'}
+          </span>
         </div>
-        <CardContent className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>{brandName}</span>
-            <span>{platformLabels[platform] ?? platform}</span>
+
+        {/* Content */}
+        <div className="p-3 space-y-2">
+          {/* Platform + Brand row */}
+          <div className="flex items-center justify-between">
+            <span className="taxonomy-label text-primary">
+              {platformLabels[platform] ?? platform}
+            </span>
+            <span className="text-xs text-muted-foreground truncate ml-2">
+              {brandName}
+            </span>
           </div>
-          <h3 className="line-clamp-2 text-sm font-medium leading-snug group-hover:underline">
+
+          {/* Title */}
+          <h3 className="text-sm text-muted-foreground leading-snug line-clamp-2 group-hover:text-foreground transition-colors">
             {title}
           </h3>
-          <div className="flex flex-wrap gap-1">
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5">
             {hookType && (
-              <Badge variant="outline" className="text-[10px]">
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-primary/10 text-primary border border-primary/20">
                 {hookLabels[hookType] ?? hookType}
-              </Badge>
+              </span>
             )}
             {disguiseLevel && (
-              <Badge variant="secondary" className="text-[10px]">
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] text-muted-foreground bg-secondary border border-border">
                 Disguise: {disguiseLevel}
-              </Badge>
+              </span>
             )}
             {useCases.slice(0, 2).map((uc) => (
-              <Badge key={uc} variant="secondary" className="text-[10px]">
+              <span key={uc} className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] text-muted-foreground bg-secondary border border-border">
                 {uc}
-              </Badge>
+              </span>
             ))}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </Link>
   )
 }

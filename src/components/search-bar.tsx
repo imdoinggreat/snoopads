@@ -2,7 +2,6 @@
 
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { useCallback, useTransition } from 'react'
-import { Input } from '@/components/ui/input'
 
 export function SearchBar() {
   const router = useRouter()
@@ -30,12 +29,12 @@ export function SearchBar() {
 
   return (
     <div className="relative">
-      <Input
+      <input
         type="search"
-        placeholder="Search creatives..."
+        placeholder="Search creatives, brands, platforms..."
         defaultValue={searchParams.get('q') ?? ''}
         onChange={handleChange}
-        className={isPending ? 'opacity-70' : ''}
+        className={`w-full h-10 px-4 rounded-lg bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors ${isPending ? 'opacity-70' : ''}`}
       />
     </div>
   )
