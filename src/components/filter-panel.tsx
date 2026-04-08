@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { useCallback } from 'react'
 import { Button } from '@/components/ui/button'
+import { Combobox } from '@/components/ui/combobox'
 
 const ecosystems = [
   { value: '', label: 'All Ecosystems' },
@@ -72,50 +73,29 @@ export function FilterPanel() {
 
   return (
     <div className="space-y-4">
-      <div className="space-y-2">
-        <label className="taxonomy-label text-foreground">Ecosystem</label>
-        <select
-          value={searchParams.get('ecosystem') ?? ''}
-          onChange={(e) => handleChange('ecosystem', e.target.value)}
-          className="flex h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
-        >
-          {ecosystems.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Combobox
+        label="ECOSYSTEM"
+        options={ecosystems}
+        value={searchParams.get('ecosystem') ?? ''}
+        onChange={(v) => handleChange('ecosystem', v)}
+        placeholder="All Ecosystems"
+      />
 
-      <div className="space-y-2">
-        <label className="taxonomy-label text-foreground">Platform</label>
-        <select
-          value={searchParams.get('platform') ?? ''}
-          onChange={(e) => handleChange('platform', e.target.value)}
-          className="flex h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
-        >
-          {platforms.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Combobox
+        label="PLATFORM"
+        options={platforms}
+        value={searchParams.get('platform') ?? ''}
+        onChange={(v) => handleChange('platform', v)}
+        placeholder="All Platforms"
+      />
 
-      <div className="space-y-2">
-        <label className="taxonomy-label text-foreground">Hook Type</label>
-        <select
-          value={searchParams.get('hookType') ?? ''}
-          onChange={(e) => handleChange('hookType', e.target.value)}
-          className="flex h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
-        >
-          {hookTypes.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Combobox
+        label="HOOK TYPE"
+        options={hookTypes}
+        value={searchParams.get('hookType') ?? ''}
+        onChange={(v) => handleChange('hookType', v)}
+        placeholder="All Hook Types"
+      />
 
       {hasFilters && (
         <Button variant="ghost" size="sm" onClick={clearAll} className="w-full text-muted-foreground hover:text-foreground">

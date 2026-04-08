@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { LiquidButton } from '@/components/ui/liquid-glass-button'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
@@ -67,12 +68,9 @@ export default function SubmitPage() {
         <p className="mt-4 text-muted-foreground">
           Your submission has been received and is pending review. We appreciate your contribution to the community.
         </p>
-        <button
-          onClick={() => setStatus('idle')}
-          className="mt-8 rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-        >
+        <LiquidButton onClick={() => setStatus('idle')} size="xl" className="mt-8">
           Submit another
-        </button>
+        </LiquidButton>
       </div>
     )
   }
@@ -205,13 +203,9 @@ export default function SubmitPage() {
         )}
 
         {/* Submit */}
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="w-full h-11 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors cursor-pointer"
-        >
+        <LiquidButton type="submit" disabled={status === 'loading'} size="xl" className="w-full">
           {status === 'loading' ? 'Submitting...' : 'Submit Creative'}
-        </button>
+        </LiquidButton>
       </form>
     </div>
   )
