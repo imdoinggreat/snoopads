@@ -111,5 +111,14 @@ export const CreativeUnits: CollectionConfig = {
     { name: 'submittedBy', type: 'email', label: 'Submitted By (email)' },
     { name: 'reviewerNote', type: 'textarea', label: 'Reviewer Note' },
     { name: 'dateSeen', type: 'date', label: 'Date First Seen' },
+    {
+      name: 'assets',
+      type: 'join',
+      collection: 'creative-assets',
+      on: 'creativeUnit',
+      admin: {
+        description: 'Images, videos, and screenshots associated with this creative unit.',
+      },
+    },
   ],
 }
